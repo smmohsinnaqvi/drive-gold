@@ -5,14 +5,14 @@ import { PrismaService } from '../prisma/prisma.service';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createUser(email: string, firstName: string, lastName: string) {
-    console.log(email, firstName, lastName);
+  async createUser(data: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  }) {
     return await this.prisma.user.create({
-      data: {
-        email,
-        firstName,
-        lastName,
-      },
+      data,
     });
   }
 
@@ -33,10 +33,25 @@ export class UsersService {
   }
 
   async deleteUser(id: number) {
-    return await this.prisma.user.delete({
-      where: {
-        id,
-      },
-    });
+    return await this.prisma.user
+      .delete({
+        where: {
+          id,
+        },
+      })
+      .then((res) => {
+        return {
+          status: 200,
+          message: 'User Deleted Successfully',
+          data: res,
+        };
+      })
+      .catch((error: any) => {
+        console.log('ERROR --->', error);
+        return {
+          status: 404,
+          message: 'User not found',
+        };
+      });
   }
 }

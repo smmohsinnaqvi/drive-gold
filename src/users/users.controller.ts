@@ -15,13 +15,15 @@ export class UsersController {
 
   @Post()
   async createUser(
-    @Body() body: { email: string; firstName: string; lastName: string },
+    @Body()
+    body: {
+      email: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+    },
   ) {
-    return this.usersService.createUser(
-      body.email,
-      body.firstName,
-      body.lastName,
-    );
+    return this.usersService.createUser(body);
   }
 
   @Get()

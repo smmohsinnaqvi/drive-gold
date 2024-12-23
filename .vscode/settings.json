@@ -23,5 +23,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "eslint.validate": ["javascript", "typescript", "typescriptreact"],
-  "cSpell.words": ["appleboy", "datasource", "ncron", "PANW", "tiktoken"]
+  "cSpell.words": [
+    "appleboy",
+    "autoincrement",
+    "datasource",
+    "ncron",
+    "PANW",
+    "tiktoken"
+  ]
 }
